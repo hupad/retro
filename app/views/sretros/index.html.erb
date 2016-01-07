@@ -2,7 +2,7 @@
 	<h1>Sprints List</h1>
 	<% @sretros.each do |sprint| %>
 		<p>
-			<%= link_to sprint.title %>
+			<%= link_to sprint.title, sretro_path(sprint)  %>
 		</p>
 	<% end %>
 </div>
