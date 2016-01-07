@@ -9,13 +9,13 @@ class SretrosController < ApplicationController
 	end
 
 	def index
-		@sretro = Sretro.all
+		@sretros = Sretro.all
 	end
 
 	def create
 		@sretro = current_user.sretros.build(sretro_params)
 		@sretro.team_id = current_user.team_id
-
+		
 		respond_to do |format|
 			if @sretro.save
 				format.html { redirect_to sretro_new_retro_notes_path(sretro_id: @sretro.id), notice: "Retro has been created"} 

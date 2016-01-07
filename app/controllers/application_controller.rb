@@ -14,12 +14,12 @@ class ApplicationController < ActionController::Base
 		    new_sretro_path
 		else
 			logged_in_user_team_id = current_user.team.id
-			sretro_id = get_pending_sretro_for_current_user logged_in_user_team_id
+			sretro_id = get_active_sretro_for_current_user logged_in_user_team_id
 			redirect_user_to_pending_retros sretro_id
 		end
 	end
 
-	def get_pending_sretro_for_current_user team_id
+	def get_active_sretro_for_current_user team_id
 		
 		sretros = Sretro.where(["is_pending = ? and team_id = ?", 1, team_id]).limit(1).to_a
 		

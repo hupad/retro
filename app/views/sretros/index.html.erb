@@ -1,0 +1,8 @@
+<div class="container">
+	<h1>Sprints List</h1>
+	<% @sretros.each do |sprint| %>
+		<p>
+			<%= link_to sprint.title %>
+		</p>
+	<% end %>
+</div>

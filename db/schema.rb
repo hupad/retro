@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151221003856) do
+ActiveRecord::Schema.define(version: 20160107175209) do
 
   create_table "retro_notes", force: :cascade do |t|
     t.text     "what_went_well",       limit: 65535
@@ -24,11 +24,11 @@ ActiveRecord::Schema.define(version: 20151221003856) do
   create_table "sretros", force: :cascade do |t|
     t.string   "title",      limit: 255
     t.string   "style",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "user_id",    limit: 4
     t.integer  "team_id",    limit: 4
-    t.boolean  "is_pending",             null: false
+    t.integer  "is_pending", limit: 4,   default: 0, null: false
   end
 
   add_index "sretros", ["team_id"], name: "index_sretros_on_team_id", using: :btree
