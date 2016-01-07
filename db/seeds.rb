@@ -5,3 +5,18 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#
+
+team_list = %w(HoneyBadgers 'CleanUp Crew' Perlfection Jasmines 'Goat Busters' Caralina)
+
+team_list.each do |team_name|
+  team = Team.find_by(name: team_name)
+
+  if team
+    puts "team already exists"
+  else
+    team = Team.new
+    team.name = team_name
+    team.save
+  end
+end
