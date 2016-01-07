@@ -1,0 +1,3 @@
+class Sretro
+
+end
