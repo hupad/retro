@@ -6,10 +6,8 @@ module Api
       
       def create
 
-        @user = User.new
+        @user = User.new(user_params)
         #binding.pry
-        @user.email = params[:email].downcase
-        @user.password = params[:password]
         
         if @user.save
           render status: 200, json: {
@@ -55,14 +53,10 @@ module Api
         end
       end
 
-      def delete
-        
-      end
-
       private
 
       def user_params
-        params.permit(:id, :email, :password)
+        params.permit(:id, :email, :password, :is_team_lead)
       end
 
     end
