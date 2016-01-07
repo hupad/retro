@@ -8,9 +8,7 @@ Retro::Application.routes.draw do
 
   # List all retros of a team
   resources :sretros do 
-	get "retro_notes", to: "retro_notes#index"
-	get 'retro_notes/new', to: "retro_notes#new", as: :new_retro_notes
-	post 'retro_notes/create', to: "retro_notes#create", as: :create_retro_notes
+	 resources :notes
   end
 
 end

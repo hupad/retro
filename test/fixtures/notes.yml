@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  sretro_id: 
+  notes: MyString
+  notes_type: 1
+
+two:
+  user_id: 
+  sretro_id: 
+  notes: MyString
+  notes_type: 1

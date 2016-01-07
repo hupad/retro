@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RetroNoteTest < ActiveSupport::TestCase
+class NotesControllerControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -1,7 +1,7 @@
 <div class="container">
 	<h1>Retro Notes</h1>
 
-	<%= form_for @retro_note, url: :sretro_new_retro_notes  do |f| %>
+	<%= form_for [@sretro, @retro_note]  do |f| %>
 		<div class="row">
 			<div id="div_went_well_row" class="col-md-4">
 				<div>

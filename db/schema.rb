@@ -11,15 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160107175209) do
+ActiveRecord::Schema.define(version: 20160107213402) do
 
-  create_table "retro_notes", force: :cascade do |t|
-    t.text     "what_went_well",       limit: 65535
-    t.text     "what_did_not_go_well", limit: 65535
-    t.string   "improvement_areas",    limit: 255
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+  create_table "notes", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "sretro_id",  limit: 4
+    t.string   "notes",      limit: 255
+    t.integer  "notes_type", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
+
+  add_index "notes", ["sretro_id"], name: "index_notes_on_sretro_id", using: :btree
+  add_index "notes", ["user_id"], name: "index_notes_on_user_id", using: :btree
 
   create_table "sretros", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -61,5 +65,7 @@ ActiveRecord::Schema.define(version: 20160107175209) do
   add_index "users", ["is_team_lead"], name: "index_users_on_is_team_lead", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "notes", "sretros"
+  add_foreign_key "notes", "users"
   add_foreign_key "sretros", "teams"
 end
