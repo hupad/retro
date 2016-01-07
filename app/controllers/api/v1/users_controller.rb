@@ -7,7 +7,7 @@ module Api
       def create
 
         @user = User.new
-        binding.pry
+        #binding.pry
         @user.email = params[:email].downcase
         @user.password = params[:password]
         
