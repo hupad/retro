@@ -19,7 +19,7 @@ class SretrosController < ApplicationController
 
 		respond_to do |format|
 			if @sretro.save
-				format.html { redirect_to sretro_new_retro_notes_path(sretro_id: @sretro.id), notice: "Retro has been created"} 
+				format.html { redirect_to sretro_new_notes_path(sretro_id: @sretro.id), notice: "Retro has been created"} 
 			else
 				format.html { render action: 'new'}
 			end
