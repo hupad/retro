@@ -3,12 +3,12 @@ module Api
     class UsersController < ApplicationController
       protect_from_forgery
       skip_before_action :verify_authenticity_token
-      
+
       def create
 
         @user = User.new(user_params)
         #binding.pry
-        
+
         if @user.save
           render status: 200, json: {
             message: 'Success',
@@ -23,9 +23,10 @@ module Api
       end
 
       def show
-        
+
         @user = User.find(params[:id])
-        @user[:avatar_file_name] = @user.avatar.url(:thumb)
+        # TODO: Implement avatar
+        # @user[:avatar_file_name] = @user.avatar.url(:thumb)
         render status: 200, json: {
           message: 'Success',
           content: @user
