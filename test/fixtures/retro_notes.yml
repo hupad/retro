@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  what_went_well: MyText
+  what_did_not_go_well: MyText
+  improvement_areas: MyString
+
+two:
+  what_went_well: MyText
+  what_did_not_go_well: MyText
+  improvement_areas: MyString

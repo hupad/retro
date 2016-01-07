@@ -1,0 +1,11 @@
+<div class="container">
+	<div class="jumbotron">
+	  <h1>Dealer Socket</h1>
+	  <p>Welcome to Retro. Easy way to do your sprint retro's</p>
+
+	  <% if !current_user %>
+	  	<p><%= link_to "Log In", new_user_session_path, class: 'btn btn-primary btn-lg' %></p>
+	  <% end %>
+	
+	</div>
+</div>
