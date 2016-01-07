@@ -1,21 +1,21 @@
 <div class="container">
 	<h1>Retro Notes</h1>
 
-	<%= form_for [@sretro, @retro_note]  do |f| %>
+	<%= form_for [@sretro, @note]  do |f| %>
 		<div class="row">
 			<div id="div_went_well_row" class="col-md-4">
 				<div>
-					<%= f.label :what_went_well %><br>
-					<%= f.text_area :what_went_well, size: "50x10" %>
+					<%= f.label "What went well" %><br>
+					<%= f.text_area :notes, size: "50x10" %>
 				</div>
 			</div>
 			<div class="col-md-4">
-				<%= f.label :what_did_not_go_well %>
-				<%= f.text_area :what_did_not_go_well, size: "50x10" %>
+				<%= f.label "What did NOT go well" %>
+				<%= f.text_area :notes, size: "50x10" %>
 			</div>
 			<div class="col-md-4">
-				<%= f.label :improvement_areas %>
-				<%= f.text_area :improvement_areas, size: "50x10" %>
+				<%= f.label "What can we do better" %>
+				<%= f.text_area :notes, size: "50x10" %>
 			</div>
 		</div>
 
