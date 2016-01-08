@@ -33,6 +33,6 @@ class SretrosController < ApplicationController
 	private
 
 	def sretro_params
-		params.require(:sretro).permit(:title, :style)
+		params.require(:sretro).permit(:title, :style, :team_id)
 	end
 end
