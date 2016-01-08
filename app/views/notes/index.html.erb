@@ -17,7 +17,7 @@
 					</p>
 					<% if current_user == note.user %>
 						<%= link_to "Edit", edit_sretro_note_path(@sretro, note) %> |
-						<%= link_to "Delete", sretro_note_path(@sretro, note), method: :destroy, data: { confirm: 'Are you sure?' } %>
+						<%= link_to "Delete", sretro_note_path(@sretro, note), method: :delete, data: { confirm: 'Are you sure?' } %>
 					<% end %>
 				</div>
 			<% end %>

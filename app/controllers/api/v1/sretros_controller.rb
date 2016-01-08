@@ -19,8 +19,7 @@ class Api::V1::SretrosController < ApplicationController
 	end
 
   def create
-		@user = User.find(user_params[:user_id])
-
+	@user = User.find(user_params[:user_id])
     @sretro = Sretro.new(sretro_params)
 
     if @sretro
