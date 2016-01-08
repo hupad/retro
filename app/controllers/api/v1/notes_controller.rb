@@ -18,9 +18,31 @@ class Api::V1::NotesController < ApplicationController
 		end
 	end
 
+	def index
+
+		notes = Notes.new
+		begin
+			notes_hash = notes.get_list_of_notes notes_params
+			get_action_items
+			binding.pry
+			render status: 200, json: {
+				message: "Success",
+				content: notes_hash["notes"]
+			}
+		rescue Exception => e
+			render status: 400, json: {
+				message: e.message
+			}
+		end
+	end
+
 	private
 
 	def notes_params
 		params.permit(:user_id, :notes, :note_type_id)
+	end
+
+	def get_action_items
+		@action_items = ActionItem.where(sretro_id: params[:sretro_id])
 	end
 end

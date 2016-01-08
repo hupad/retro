@@ -23,7 +23,7 @@ Retro::Application.routes.draw do
       resources :teams, only: [:index]
 
       resources :sretros do
-        resources :notes, only: [:create, :show]
+        resources :notes, only: [:create, :show, :index]
       end
     end
   end
