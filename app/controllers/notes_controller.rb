@@ -50,7 +50,6 @@ class NotesController < ApplicationController
  	end
  	
  	def close
- 		binding.pry
  		@sretro.is_pending = 0
  		if @sretro.save
  			redirect_to sretros_path
