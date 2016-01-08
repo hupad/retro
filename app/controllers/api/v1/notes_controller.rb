@@ -24,7 +24,6 @@ class Api::V1::NotesController < ApplicationController
 		begin
 			notes_hash = notes.get_list_of_notes notes_params
 			get_action_items
-			binding.pry
 			render status: 200, json: {
 				message: "Success",
 				content: notes_hash["notes"]
@@ -39,7 +38,7 @@ class Api::V1::NotesController < ApplicationController
 	private
 
 	def notes_params
-		params.permit(:user_id, :notes, :note_type_id)
+		params.permit(:user_id, :notes, :note_type_id, :sretro_id)
 	end
 
 	def get_action_items
