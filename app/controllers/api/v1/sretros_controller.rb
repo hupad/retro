@@ -42,6 +42,6 @@ class Api::V1::SretrosController < ApplicationController
     end
 
     def sretro_params
-      params.require(:sretro).permit(:title, :style, :team_id)
+      params.permit(:title, :style, :team_id)
     end
 end
