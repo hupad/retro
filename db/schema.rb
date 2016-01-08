@@ -11,17 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160107213402) do
+ActiveRecord::Schema.define(version: 20160108015404) do
 
-  create_table "notes", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.integer  "sretro_id",  limit: 4
-    t.string   "notes",      limit: 255
-    t.integer  "notes_type", limit: 4
+  create_table "note_types", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
+  create_table "notes", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.string   "notes",        limit: 255
+    t.integer  "notes_type",   limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "note_type_id", limit: 4
+    t.integer  "sretro_id",    limit: 4
+  end
+
+  add_index "notes", ["note_type_id"], name: "index_notes_on_note_type_id", using: :btree
   add_index "notes", ["sretro_id"], name: "index_notes_on_sretro_id", using: :btree
   add_index "notes", ["user_id"], name: "index_notes_on_user_id", using: :btree
 
@@ -37,6 +45,16 @@ ActiveRecord::Schema.define(version: 20160107213402) do
 
   add_index "sretros", ["team_id"], name: "index_sretros_on_team_id", using: :btree
   add_index "sretros", ["title"], name: "index_sretros_on_title", using: :btree
+
+  create_table "team_retros", force: :cascade do |t|
+    t.integer  "team_id",    limit: 4
+    t.integer  "sretro_id",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "team_retros", ["sretro_id"], name: "index_team_retros_on_sretro_id", using: :btree
+  add_index "team_retros", ["team_id"], name: "index_team_retros_on_team_id", using: :btree
 
   create_table "teams", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -65,7 +83,10 @@ ActiveRecord::Schema.define(version: 20160107213402) do
   add_index "users", ["is_team_lead"], name: "index_users_on_is_team_lead", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "notes", "note_types"
   add_foreign_key "notes", "sretros"
   add_foreign_key "notes", "users"
   add_foreign_key "sretros", "teams"
+  add_foreign_key "team_retros", "sretros"
+  add_foreign_key "team_retros", "teams"
 end

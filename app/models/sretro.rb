@@ -1,4 +1,6 @@
 class Sretro < ActiveRecord::Base
-	belongs_to :user
-	belongs_to :team
+	#belongs_to :user
+	has_many :team_retros
+	has_many :teams, through: :team_retro
+	has_many :notes
 end

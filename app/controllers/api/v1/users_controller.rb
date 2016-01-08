@@ -5,9 +5,7 @@ module Api
       skip_before_action :verify_authenticity_token
 
       def create
-
         @user = User.new(user_params)
-        #binding.pry
 
         if @user.save
           render status: 200, json: {
@@ -57,7 +55,7 @@ module Api
       private
 
       def user_params
-        params.permit(:id, :email, :password, :is_team_lead)
+        params.permit(:id, :email, :password, :is_team_lead, :team_id)
       end
 
     end

@@ -2,12 +2,12 @@
 
 	<div class="panel panel-default">
 			<div class="panel-heading">
-				<h1>Sprints List</h1>
+				<h1>Retro List</h1>
 			</div>
 			<div class="panel-body">
 				<% @sretros.each do |retro| %>
 					<p>
-						<%= link_to retro.title, sretro_new_notes_path(retro) %>
+						<%= link_to retro.title, new_sretro_note_path(retro) %>
 					</p>
 				<% end %>
 			</div>

@@ -20,3 +20,9 @@ team_list.each do |team_name|
     team.save
   end
 end
+
+note_types = ["what went well", "what did not go well", "what can we do better"]
+
+note_types.each do |note|
+	NoteType.create(name: note)
+end

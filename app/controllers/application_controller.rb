@@ -10,13 +10,14 @@ class ApplicationController < ActionController::Base
 	end
 
 	def after_sign_in_path_for(resource)
-		if current_user.is_team_lead
-		    new_sretro_path
-		else
-			logged_in_user_team_id = current_user.team.id
-			sretro_id = get_active_sretro_for_current_user logged_in_user_team_id
-			redirect_user_to_pending_retros sretro_id
-		end
+		sretros_path
+		# if current_user.is_team_lead
+		#     new_sretro_path
+		# else
+		# 	logged_in_user_team_id = current_user.team.id
+		# 	sretro_id = get_active_sretro_for_current_user logged_in_user_team_id
+		# 	redirect_user_to_pending_retros sretro_id
+		# end
 	end
 
 	def get_active_sretro_for_current_user team_id

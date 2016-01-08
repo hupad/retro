@@ -10,15 +10,19 @@ class SretrosController < ApplicationController
 	end
 
 	def index
-		@sretros = Sretro.all
+		@team = current_user.team
+		@team_retros = @team.team_retros
+		@sretros = []
+		@team_retros.map { |e| @sretros << e.sretro  }
 	end
 
 	def create
-		@sretro = current_user.sretros.build(sretro_params)
-		@sretro.team_id = current_user.team_id
+		@user_team = current_user.team
+		@sretro = Sretro.new(sretro_params)
 
 		respond_to do |format|
 			if @sretro.save
+				@team_retro = TeamRetro.create(team_id: current_user.team.id, sretro_id: @sretro.id)
 				format.html { redirect_to new_sretro_note_path(sretro_id: @sretro.id), notice: "Retro has been created"} 
 			else
 				format.html { render action: 'new'}
