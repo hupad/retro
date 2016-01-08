@@ -13,6 +13,7 @@ class NotesController < ApplicationController
 		@notes.flatten!
 		@notes.map { |e|  @notes_names << e.note_type.name }
 		@notes_names.uniq!
+		get_action_items
 	end
 
 	def create
@@ -68,5 +69,9 @@ class NotesController < ApplicationController
 
 	def get_retro_by_id
 		@sretro = Sretro.find(params[:sretro_id])
+	end
+
+	def get_action_items
+		@action_items = ActionItem.where(sretro_id: params[:sretro_id])
 	end
 end

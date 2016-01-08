@@ -7,7 +7,9 @@
 			<div class="panel-body">
 				<% @sretros.each do |retro| %>
 					<p>
-						<%= link_to retro.title, new_sretro_note_path(retro) %>
+						<%= link_to retro.title, new_sretro_note_path(retro) %> 
+						| 
+						<%= link_to "Summary", sretro_notes_path(retro)%>
 					</p>
 				<% end %>
 			</div>

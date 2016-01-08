@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h1>List Retro Notes</h1>		
+			<h1><%= @sretro.title %> - Summary</h1>		
 		</div>
 		<div class="panel-body">
 			<div class="row">
@@ -12,19 +12,50 @@
 				<% end %>
 				<% @notes.each do |note| %>
 				<div class="col-md-6">
+					<p>
+						<%= note.notes %>
+					</p>
 					<% if current_user == note.user %>
 						<%= link_to "Edit", edit_sretro_note_path(@sretro, note) %> |
 						<%= link_to "Delete", sretro_note_path(@sretro, note), method: :destroy, data: { confirm: 'Are you sure?' } %>
 					<% end %>
-					<p>
-						<%= note.notes %>
-					</p>
 				</div>
 			<% end %>
 			</div>
 		</div>
-		<div class='panel-footer'>
-			<%= link_to "Finish Retro", "#", id: "finish_retro", data: {sretro_id: @sretro.id} %>
-		</div>
+		<% if current_user.is_team_lead? %>
+			<div class='panel-footer'>
+				<%= link_to "Finish Retro", "#", id: "finish_retro", data: {sretro_id: @sretro.id} %>
+			</div>
+		<% end %>
 	</div>
 </div>
+
+<%= form_for [@sretro, @sretro.action_items.build] do |f| %>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h1>Action Items</h1>
+					</div>
+					<div class="panel-body">
+						<%= f.text_area :description, cols: 50, rows: 10 %>
+					</div>
+					<div class="panel-footer">
+						<%= f.submit "Save", class: "btn btn-lg btn-primary", data: {disable_with: "Saving..."} %>
+					</div>
+				</div>	
+			</div>
+			<div class="col-md-6">
+				<% @action_items.each do |item| %>
+					<ul>
+						<li>
+							<%= item.description %>
+						</li>
+					</ul>
+				<% end %>
+			</div>
+		</div>
+	</div>
+<% end %>

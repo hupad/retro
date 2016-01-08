@@ -5,11 +5,17 @@ Retro::Application.routes.draw do
 
   resources :sretros do 
 	 resources :notes
-   post '/notes/close', to: "notes#close", as: :retro_close
+     post '/notes/close', to: "notes#close", as: :retro_close
+
+     get 'action_items'
+     post 'action_items', to: "action_items#create"
+     post 'action_items/update'
+     get 'action_items/new'
+     get 'action_items/edit'
   end
 
   post "search", to: "search#notes", as: :search
-  
+
   namespace :api do
     namespace :v1 do
       resources :users, only: [:create, :update, :delete, :show]

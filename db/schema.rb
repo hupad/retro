@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160108015404) do
+ActiveRecord::Schema.define(version: 20160108151403) do
+
+  create_table "action_items", force: :cascade do |t|
+    t.string   "description", limit: 255
+    t.integer  "sretro_id",   limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "action_items", ["sretro_id"], name: "index_action_items_on_sretro_id", using: :btree
 
   create_table "note_types", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -83,6 +92,7 @@ ActiveRecord::Schema.define(version: 20160108015404) do
   add_index "users", ["is_team_lead"], name: "index_users_on_is_team_lead", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "action_items", "sretros"
   add_foreign_key "notes", "note_types"
   add_foreign_key "notes", "sretros"
   add_foreign_key "notes", "users"
