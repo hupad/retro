@@ -10,10 +10,7 @@ class SretrosController < ApplicationController
 	end
 
 	def index
-		@team = current_user.team
-		@team_retros = @team.team_retros
-		@sretros = []
-		@team_retros.map { |e| @sretros << e.sretro  }
+		@sretros = current_user.team.sretros
 	end
 
 	def create
@@ -22,7 +19,6 @@ class SretrosController < ApplicationController
 
 		respond_to do |format|
 			if @sretro.save
-				@team_retro = TeamRetro.create(team_id: current_user.team.id, sretro_id: @sretro.id)
 				format.html { redirect_to new_sretro_note_path(sretro_id: @sretro.id), notice: "Retro has been created"} 
 			else
 				format.html { render action: 'new'}

@@ -6,12 +6,11 @@ class NotesController < ApplicationController
 	end
 
 	def index
-		@retros = current_user.team.team_retros.where(sretro_id: params[:sretro_id])
-		@notes = []
-		@notes_names = []
-		@retros.map { |e| @notes << Note.where(sretro_id: e.sretro_id).to_a }
-		@notes.flatten!
-		@notes.map { |e|  @notes_names << e.note_type.name }
+		
+		@retros= current_user.team.sretros.where(id: params[:sretro_id]).to_ary
+		@notes = @retros.map { |e| e.notes }
+		@notes.flatten! #I am sure there is a better way to handle this
+		@notes_names  = @notes.map { |e|  e.note_type.name }
 		@notes_names.uniq!
 		get_action_items
 	end

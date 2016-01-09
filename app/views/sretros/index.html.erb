@@ -16,8 +16,8 @@
 					<% @sretros.each do |retro| %>
 						<tbody>
 							<tr>
-								<th scope="row"><%= link_to retro.title, new_sretro_note_path(retro) %></th>
-								<td><p><%= link_to "Summary", sretro_notes_path(retro)%></p></td>
+								<th scope="row"><%= link_to retro.title, sretro_notes_path(retro) %></th>
+								<td><p><%= link_to "New Note", new_sretro_note_path(retro) %></p></td>
 								<td><%= time_ago_in_words(retro.created_at) %> ago</td>
 							</tr>
 						</tbody>
