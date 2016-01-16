@@ -1,28 +1,28 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The idea of this app is to create a SPRINT RETRO board for teams to collaborate from anywhere
+and participate in the retro.
 
-Things you may want to cover:
+Some of the features are:
 
-* Ruby version
+* Scrum Master/Tech lead can create Retros
 
-* System dependencies
+* For now anyone can sign up, eventually, we will be wanting to invite team members instead of having them sign up
 
-* Configuration
+* Vote on the RETRO NOTES
 
-* Database creation
+* Create action Items
 
-* Database initialization
+* Search Notes
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Different sprint retro templates, 2 for now, will add more later
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+== MORE FEATURES
+
+* Create Colored notes
+	- Yello
+	- Blue
+	- Pink, etc
+	
+* Add javascript to simulate notes on the white board

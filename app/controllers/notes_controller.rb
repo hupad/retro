@@ -50,9 +50,10 @@ class NotesController < ApplicationController
  	
  	def close
  		@sretro.is_pending = 0
- 		if @sretro.save
- 			redirect_to sretros_path
- 		end
+ 		@sretro.save
+ 		respond_to do |format|
+			format.js {render nothing: true} 
+		end
  	end
 
 	def show

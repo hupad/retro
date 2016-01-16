@@ -9,7 +9,6 @@
 					<thead>
 						<tr>
 							<th>Retro Title</th>
-							<td></td>
 							<th>Created</th>
 						</tr>
 					</thead>
@@ -17,7 +16,9 @@
 						<tbody>
 							<tr>
 								<th scope="row"><%= link_to retro.title, sretro_notes_path(retro) %></th>
-								<td><p><%= link_to "New Note", new_sretro_note_path(retro) %></p></td>
+								<% if retro.is_pending? %>
+									<td><p><%= link_to "New Note", new_sretro_note_path(retro) %></p></td>
+								<% end %>
 								<td><%= time_ago_in_words(retro.created_at) %> ago</td>
 							</tr>
 						</tbody>

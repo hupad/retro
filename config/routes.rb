@@ -5,7 +5,7 @@ Retro::Application.routes.draw do
 
   resources :sretros do 
 	 resources :notes
-     post '/notes/close', to: "notes#close", as: :retro_close
+     patch '/retro_notes/close', to: "notes#close"
 
      get 'action_items'
      post 'action_items', to: "action_items#create"

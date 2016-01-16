@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109113539) do
+ActiveRecord::Schema.define(version: 20160116141040) do
 
   create_table "action_items", force: :cascade do |t|
     t.string   "description", limit: 255
@@ -32,10 +32,11 @@ ActiveRecord::Schema.define(version: 20160109113539) do
     t.integer  "user_id",      limit: 4
     t.string   "notes",        limit: 255
     t.integer  "notes_type",   limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.integer  "note_type_id", limit: 4
     t.integer  "sretro_id",    limit: 4
+    t.integer  "vote",         limit: 4,   default: 0
   end
 
   add_index "notes", ["note_type_id"], name: "index_notes_on_note_type_id", using: :btree
@@ -49,7 +50,7 @@ ActiveRecord::Schema.define(version: 20160109113539) do
     t.datetime "updated_at",                         null: false
     t.integer  "user_id",    limit: 4
     t.integer  "team_id",    limit: 4
-    t.integer  "is_pending", limit: 4,   default: 0, null: false
+    t.integer  "is_pending", limit: 4,   default: 1, null: false
   end
 
   add_index "sretros", ["team_id"], name: "index_sretros_on_team_id", using: :btree
