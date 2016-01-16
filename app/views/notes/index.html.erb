@@ -1,56 +1,67 @@
 <div class="container">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h1><%= @sretro.title %> - Summary</h1>
-			<%= button_tag "Submit my vote", id: "submit_votes", data: {disable_with: "Saving..", sretro_id: @sretro.id}, class: "btn btn-lg btn-primary" %>
-		</div>
-		<div class="panel-body">
-			<% @notes.each do |note| %>
-					<p>
-						<%= check_box_tag :vote, id: "notes_vote_#{note.id}", data: {note_id: note.id, exisiing_count: note.vote}, class: "note_vote_class" %>
-						<%= note.notes %>
-					</p>
-					<% if current_user == note.user %>
-						<%= link_to "Edit", edit_sretro_note_path(@sretro, note) %> |
-						<%= link_to "Delete", sretro_note_path(@sretro, note), method: :delete, data: { confirm: 'Are you sure?' } %>
+	<div class="row">
+		<div class="col-md-6">			
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h1><%= @sretro.title %> - Summary</h1>
+					<%= button_tag "Submit my votes", id: "submit_votes", data: {disable_with: "Saving..", sretro_id: @sretro.id}, class: "btn btn-default btn-primary" %>
+					<p>You only get 3 votes.</p>
+				</div>
+				<div class="panel-body">
+					<% @notes.each do |note| %>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3><%= note.note_type.name %></h3>
+							</div>
+							<div class="panel-body">
+								<p>
+									<%= check_box_tag :vote, '', false, class: "note_vote_class" %>
+									<%= note.notes %>
+								</p>	
+							</div>
+							<div class="panel-footer">
+								<% if current_user == note.user %>
+									<%= link_to "Edit", edit_sretro_note_path(@sretro, note) %> |
+									<%= link_to "Delete", sretro_note_path(@sretro, note), method: :delete, data: { confirm: 'Are you sure?' } %>
+								<% end %>
+							</div>
+						</div>
 					<% end %>
+				</div>
+				<% if current_user.is_team_lead? && @sretro.is_pending? %>
+					<div class='panel-footer'>
+							<%= button_tag "Save and close retro", id: "finish_retro", data: {disable_with: "Saving..", sretro_id: @sretro.id}, class: "btn btn-lg btn-primary" %>
+							<%= link_to "New Note", new_sretro_note_path(@sretro), class: "pull-right" %>
+					</div>
 				<% end %>
+			</div>	
 		</div>
-		<% if current_user.is_team_lead? && @sretro.is_pending? %>
-			<div class='panel-footer'>
-					<%= button_tag "Save and close retro", id: "finish_retro", data: {disable_with: "Saving..", sretro_id: @sretro.id}, class: "btn btn-lg btn-primary" %>
-					<%= link_to "New Note", new_sretro_note_path(@sretro), class: "pull-right" %>
-			</div>
-		<% end %>
+		<div class="col-md-6">
+			<%= form_for [@sretro, @sretro.action_items.build] do |f| %>
+				<div class="well well-lg">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h1>Action Items</h1>
+						</div>
+						<div class="panel-body">
+							<%= f.text_area :description, cols: 50, rows: 10 %>
+						</div>
+						<div class="panel-footer">
+							<%= f.submit "Save", class: "btn btn-lg btn-primary", data: {disable_with: "Saving..."} %>
+						</div>
+					</div>
+				</div>
+				<div class="well">
+					<h4>Vote on action items. You will have 3 votes</h4>
+					<% @action_items.each do |item| %>
+						<ul>
+							<li>
+								<%= item.description %>
+							</li>
+						</ul>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
 	</div>
 </div>
-
-<%= form_for [@sretro, @sretro.action_items.build] do |f| %>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h1>Action Items</h1>
-					</div>
-					<div class="panel-body">
-						<%= f.text_area :description, cols: 50, rows: 10 %>
-					</div>
-					<div class="panel-footer">
-						<%= f.submit "Save", class: "btn btn-lg btn-primary", data: {disable_with: "Saving..."} %>
-					</div>
-				</div>	
-			</div>
-			<div class="col-md-6">
-				<h4>Vote on action items. You will have 3 votes</h4>
-				<% @action_items.each do |item| %>
-					<ul>
-						<li>
-							<%= item.description %>
-						</li>
-					</ul>
-				<% end %>
-			</div>
-		</div>
-	</div>
-<% end %>

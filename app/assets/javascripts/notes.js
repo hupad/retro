@@ -2,7 +2,7 @@
 // All this logic will automatically be available in application.js.
 $(document).ready(function(){
 	
-	var count = 3;
+	var count = 0;
 	var voting_map = {};
 
 	$('#finish_retro').click(function(){
@@ -25,7 +25,19 @@ $(document).ready(function(){
 	});
 
 	$(".note_vote_class").click(function(){
-		console.log(count--);
+		if ( $(this).prop('checked') == true ) {
+			count++;
+		}else{
+			count--;
+		}
+
+		if (count == 3 ) {
+			console.log("Disable other checkboxes");
+		};
+	});
+
+	$("#submit_votes").click(function(){
+		alert("I will be submitting your votes");
 	});
 
 });
