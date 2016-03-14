@@ -1,5 +1,7 @@
 == README
 
+== Hackathon Project
+
 The idea of this app is to create a SPRINT RETRO board for teams to collaborate from anywhere
 and participate in the retro.
 
